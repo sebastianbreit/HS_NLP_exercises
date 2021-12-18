@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <!-- optional styles -->
+</head>
+<body>
+
+<div id="app">
+    <h1>ToDo List</h1>
+
+    <h3>Create task:</h3>
+    <table>
+        <tr>
+            <th>Priority:</th>
+            <th><input v-model="newPrio"></th>
+        </tr>
+        <tr>
+            <th>Task description:</th>
+            <th><input v-model="newText"></th>
+        </tr>
+        <tr>
+            <button v-on:click="createTask(newPrio,newText)">Create Task</button>
+        </tr>
+    </table>
+
+    
+    <h3>Open tasks:</h3>
+    <table>
+        <tr>
+            <th>Priority</th>
+            <th>Task description</th>
+        </tr>
+        <tr v-for="oTask in oTasks">
+            <td>{{ oTask.prio }}</td>
+            <td>{{ oTask.text }}</td>
+            <td><button v-on:click="deleteOpenTask(oTask)">Delete Task</button></td>
+            <td><button v-on:click="completeTask(oTask)">Complete Task</button></td>
+        
+        </tr>
+    </table>
+
+    <h3>Completed tasks:</h3>
+    <table>
+        <tr>
+            <th>Priority</th>
+            <th>Task description</th>
+        </tr>
+        <tr v-for="cTask in cTasks">
+            <td>{{ cTask.prio }}</td>
+            <td>{{ cTask.text }}</td>
+            <td><button v-on:click="deleteCompletedTask(cTask)">Delete Task</button></td>
+        </tr>
+    </table>
+
+    
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
