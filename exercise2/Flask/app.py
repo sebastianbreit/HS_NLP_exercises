@@ -5,15 +5,15 @@ from nlp.utils import get_named_entities, tokenize_with_pos
 app = Flask(__name__)
 
 
-@app.route()
+@app.route('/about')
 def about():
     """This function should serve the about.html file on POST and GET requests
     Fill out the route decorator and function body
     """
-    pass
+    render_template('about.html')
 
 
-@app.route()
+@app.route('/tokenize',methods = ['POST'])
 def pos():
     """This function should accept only POST requests
     If the request body contains a "text" key it should process the associated value using
@@ -23,17 +23,34 @@ def pos():
     if the "text" value is a blank or empty string and serve the illegal.html file
     Fill out the route decorator and function body
     """
-    pass
+    text = request.form['text']
+    if text == '':
+        return render_template('illegal.html'), 451
+    else:
+        tokenized=tokenize_with_pos(text)
+        return jsonify(tokenized), 200
+    #pass
 
 
-@app.route()
+@app.route('/entities',methods = ['GET','POST'])
 def ner():
     """This function should accept POST and GET requests
     It should work like the pos() function but use your get_named_entities() function
     to process text instead (Use request.method to handle POST vs GET requests)
     Fill out the route decorator and function body
     """
-    pass
+    text = ""
+
+
+    if request.method == 'POST':
+        text=request.form['text']
+    elif request.method == 'GET':
+        text=request.args['text']
+
+    if text == "":
+        return render_template('illegal.html'), 451
+    else:
+        return jsonify(get_named_entities(text)), 200
 
 
 if __name__ == '__main__':
