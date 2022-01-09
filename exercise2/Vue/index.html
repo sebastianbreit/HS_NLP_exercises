@@ -11,26 +11,26 @@
 <div id="app">
     <div>
         <label>Enter a text to highlight
-            <textarea class="homework"></textarea>
+            <textarea class="homework" v-model="input" @input="createTokens"></textarea>
         </label>
     </div>
     <div class="homework">
         <label class="hw">
             Highlight string:
-            <input type="text"/>
+            <input type="text" v-model="highlight" @input="createTokens"/>
         </label>
         <label class="hw">
             Highlighting color:
-            <input type="color">
+            <input type="color" v-model="color" @input="createTokens">
         </label>
     </div>
     <h4>Highlight v1</h4>
-    <div class="homework"> </div>
+    <div class="homework" v-html="markHL"></div>
     <h4>Highlight v2</h4>
-    <div class="homework"> </div>
+    <div class="homework" v-html="classHL"></div>
     <h4>Highlight v3</h4>
-    <div class="homework" >
-            <span> </span>
+    <div class="homework"  v-for="(token,index) in tokensHL">
+            <span v-html="token"></span>
     </div>
 </div>
 
