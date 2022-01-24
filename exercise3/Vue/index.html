@@ -29,11 +29,19 @@
 
     <div class="homework">
         <label class="hw">
-            Highlighting colors:
-            <div v-for="(picker,index) in used_colors">
-                <span>POS-TAG: {{picker.pos}}</span>
-                <input type="color" :style="{'background-color' : used_colors[index].color}" v-model="used_colors[index].color">
-                <!-- <input type="text" v-model="used_colors[index].color"> -->
+            Highlighting colors POS tagging:
+            <div v-for="(picker,index) in used_colors_pos">
+                <span>pos: {{picker.pos}}</span>
+                <input type="color" :style="{'background-color' : used_colors_pos[index].color}" v-model="used_colors_pos[index].color">
+            </div>
+        </label>
+    </div>
+    <div class="homework">
+        <label class="hw">
+            Highlighting colors NE tagging:
+            <div v-for="(picker,index) in used_colors_ne">
+                <span>ne: {{picker.pos}}</span>
+                <input type="color" :style="{'background-color' : used_colors_ne[index].color}" v-model="used_colors_ne[index].color">
             </div>
         </label>
     </div>
