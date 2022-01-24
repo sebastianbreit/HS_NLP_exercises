@@ -17,6 +17,7 @@
         <table>
             <td><button v-on:click="highlightPOS">Highlight POS</button></td>
             <td><button v-on:click="highlightNE">Highlight NE</button></td>
+            <!-- <td><button v-on:click="updateColors">Update Custom Colors</button></td> -->
         </table>
     </div>
     <div class="homework">
@@ -31,7 +32,8 @@
             Highlighting colors:
             <div v-for="(picker,index) in used_colors">
                 <span>POS-TAG: {{picker.pos}}</span>
-                <input  type="color" v-model="picker.color">
+                <input type="color" :style="{'background-color' : used_colors[index].color}" v-model="used_colors[index].color">
+                <!-- <input type="text" v-model="used_colors[index].color"> -->
             </div>
         </label>
     </div>

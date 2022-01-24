@@ -5,7 +5,6 @@ var app = new Vue({
         current_hl_token:'',
         current_hl_color:'',
         default_colors:['cyan','blue','violet','darkred','red','orange','yellow','greenyellow','green'],
-        used_pos:[],
         used_colors:[],
         pos_list:[],
         ne_list:[],
@@ -24,8 +23,7 @@ var app = new Vue({
             axios.post('http://localhost:5000/HL-POS', data)
             .then(response => {
                 this.pos_list=[]
-                this.used_pos=[]
-                this.used_colors=[]
+                //this.used_colors=[]
                 this.html_text=[]
                 this.pos_list.push(...response.data)
                 console.log(this.pos_list)
@@ -49,8 +47,8 @@ var app = new Vue({
                     
                     //pos_color_mapping={}
                     
-                    if(app.used_pos.includes(pos_el.pos)){
-                        app.current_hl_color=app.used_colors.find(el => el.pos==pos_el.pos)                        
+                    if(app.used_colors.filter(el => el.pos==pos_el.pos).length){
+                        app.current_hl_color=app.used_colors.find(el => el.pos==pos_el.pos).color                   
                         app.current_hl_token={pos:pos_el.pos,color:app.current_hl_color}
                     }
                     else{
@@ -66,7 +64,6 @@ var app = new Vue({
                         }                      
                         app.current_hl_token={pos:pos_el.pos,color:app.current_hl_color}
                         
-                        app.used_pos.push(pos_el.pos)
                         app.used_colors.push(app.current_hl_token)
                     }
                     app.html_text.push("<font color='"+app.current_hl_color+"'>"+pos_el.text+"</font>")
@@ -87,18 +84,9 @@ var app = new Vue({
             //const res = await axios.post('localhost:5000/HL-NE', { text: input });
             //res.data.json;
             // Send POST_HL_NE    
-        }
-    },
-    mounted:{
-         //axios.post('localhost:5000/HL-NE', { text: input }).then(response => (this.info = response))
-    },
-    computed: {
-        markHL: function (){
-            return this.input.replaceAll(this.highlight, "<mark>"+this.highlight+"</mark>")
         },
-        classHL: function (){
-            return this.input.replaceAll(this.highlight, "<span class='highlight'>"+this.highlight+"</span>")
-        }
+        updateColors: function(){
 
+        }
     }
 })
