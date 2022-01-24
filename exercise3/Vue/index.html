@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex-02</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+    <div>
+        <h4>Enter a text to highlight</h4>
+        <textarea class="homework" v-model="input" ></textarea>
+    </div>
+    <div class="homework">
+        <table>
+            <td><button v-on:click="highlightPOS">Highlight POS</button></td>
+            <td><button v-on:click="highlightNE">Highlight NE</button></td>
+        </table>
+    </div>
+    <div class="homework">
+        <span v-for="(token,index) in html_text">
+            <span v-html="token"></span>
+            <span> </span>
+        </span>
+    </div>
+
+    <div class="homework">
+        <label class="hw">
+            Highlighting colors:
+            <div v-for="(picker,index) in used_colors">
+                <span>POS-TAG: {{picker.pos}}</span>
+                <input  type="color" v-model="picker.color">
+            </div>
+        </label>
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+
+</html>

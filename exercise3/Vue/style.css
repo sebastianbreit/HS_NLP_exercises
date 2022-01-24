@@ -1,0 +1,18 @@
+span.highlight {
+    background-color: coral;
+}
+
+textarea.homework{
+    width: 80%;
+}
+
+div.homework{
+    border-bottom: thin groove black;
+    width: 80%;
+    padding: 4px;
+    margin: 4px;
+}
+
+.hw{
+    height: 20px;
+}
